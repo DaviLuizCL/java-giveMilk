@@ -1,8 +1,5 @@
 package giveMilk;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import giveMilk.models.Animal;
 import giveMilk.models.Fazenda;
 import giveMilk.models.Tanque;
@@ -12,31 +9,19 @@ public class Main {
 		
 		Fazenda fazenda = new Fazenda("QueroLeite", "Xique-Xique - BA");
 		
-		Tanque tanque = new Tanque(1, 20, 2, 2025, fazenda);
+		Tanque tanque1 = new Tanque(1, 20);
+		Tanque tanque2 = new Tanque(2, 15);
+		fazenda.registrarTanque(tanque1);
+		fazenda.registrarTanque(tanque2);
 		
-		Animal animal = new Animal(1, "Nelore", "Fernando", 22, 2);
-		Animal animal2 = new Animal(1, "Nelore", "Davi", 22, 10);
-		Animal animal3 = new Animal(1, "Nelore", "Olenildo", 22, 6);
+		Animal animal1 = new Animal(1, "Nelore", "Fernando", 5, 10);
+		Animal animal2 = new Animal(2, "Nelore", "Davi", 3, 10);
+		Animal animal3 = new Animal(3, "Nelore", "Olenildo", 4, 30);
 		
-		fazenda.registrarAnimal(animal);
+		fazenda.registrarAnimal(animal1);
 		fazenda.registrarAnimal(animal2);
 		fazenda.registrarAnimal(animal3);
 		
-		List<Animal> animalList = new ArrayList<Animal>();
-		animalList.add(animal);
-		animalList.add(animal2);
-		animalList.add(animal3);
-		
-		tanque.armazenarLeite(fazenda);
-		
-		Animal animal4 = new Animal(1, "Nelore", "Heitor", 22, 1);
-		
-		animalList.add(animal4);
-		
-		fazenda.producaoTotalFazenda(animalList);
-
-		tanque.armazenarLeite(fazenda);
-		
-		tanque.removerleite(10, tanque);
+		fazenda.distribuirLeiteNosTanques();  
 	}
 }

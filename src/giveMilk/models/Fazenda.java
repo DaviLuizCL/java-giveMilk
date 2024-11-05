@@ -1,38 +1,51 @@
 package giveMilk.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Fazenda {
 	
 	private String nome;
 	private String endereco;
-	private Animal animal;  
-	private Tanque tanque;  
-	double totalProducao = 0;
+	private List<Animal> animais = new ArrayList<>();
+	private List<Tanque> tanques = new ArrayList<>();
 	
 	public Fazenda(String nome, String endereco) {
-		super();
 		this.nome = nome;
 		this.endereco = endereco;
 	}
 
 	public void registrarAnimal(Animal animal) {
-		System.out.println("A fazenda "+this.nome+" cadastrou a vaca "
-							+animal.getNome()+" da raça: "+animal.getRaca());
+		animais.add(animal);
+		System.out.println("A fazenda " + this.nome + " cadastrou a vaca "
+							+ animal.getNome() + " da raça: " + animal.getRaca());
 	}
 	
 	public void registrarTanque(Tanque tanque) {
-		System.out.println("A fazenda "+this.nome+" cadastrou o tanque "
-							+tanque.getID()+" com capacidade de: "+tanque.getCapacidadeMaxima());
+		tanques.add(tanque);
+		System.out.println("A fazenda " + this.nome + " cadastrou o tanque "
+							+ tanque.getID() + " com capacidade de: " + tanque.getCapacidadeMaxima() + "L");
 	}
 	
-	public double producaoTotalFazenda(List<Animal> animalList) {
-		for(Animal animal : animalList) {
+	public double producaoTotalFazenda() {
+		double totalProducao = 0;
+		for (Animal animal : animais) {
 			totalProducao += animal.registrarProducao();
 		}
-		System.out.println("A produção diaria total da fazenda foi: "+totalProducao+"L de leite quentinho"); 
+		System.out.println("A produção diária total da fazenda foi: " + totalProducao + "L de leite.");
 		return totalProducao;
-	}	
+	}
+
+	public void distribuirLeiteNosTanques() {
+		double producaoTotal = producaoTotalFazenda();
+		for (Tanque tanque : tanques) {
+			if (producaoTotal <= 0) break;
+			producaoTotal = tanque.armazenarLeite(producaoTotal);
+		}
+		if (producaoTotal > 0) {
+			System.out.println(producaoTotal + "L de leite excedente. Todos os tanques estão cheios.");
+		}
+	}
 
 	public String getNome() {
 		return nome;
@@ -50,20 +63,11 @@ public class Fazenda {
 		this.endereco = endereco;
 	}
 
-	public Animal getAnimal() {
-		return animal;
+	public List<Animal> getAnimais() {
+		return animais;
 	}
 
-	public void setAnimal(Animal animal) {
-		this.animal = animal;
+	public List<Tanque> getTanques() {
+		return tanques;
 	}
-
-	public Tanque getTanque() {
-		return tanque;
-	}
-
-	public void setTanque(Tanque tanque) {
-		this.tanque = tanque;
-	}
-	
 }

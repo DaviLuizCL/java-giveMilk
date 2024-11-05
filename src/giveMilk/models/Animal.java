@@ -10,8 +10,7 @@ public class Animal {
 	private boolean produzLeite = true;
 	
 	public Animal(int iD, String raca, String nome, int idade, double producao) {
-		super();
-		ID = iD;
+		this.ID = iD;
 		this.raca = raca;
 		this.nome = nome;
 		this.idade = idade;
@@ -19,12 +18,11 @@ public class Animal {
 	}
 	
 	public double registrarProducao() {
-		if(this.produzLeite == true) {
-			double producaoDiariaTotal =+ this.producao;
-			System.out.println("A produção diaria total da vaca "+ this.nome + " foi: "+producaoDiariaTotal);
-			return producaoDiariaTotal;
-		}else {
-			System.out.println("Não vai ter leitinho quente hoje!");
+		if(produzLeite) {
+			System.out.println("A produção diária da vaca " + nome + " foi: " + producao + "L");
+			return producao;
+		} else {
+			System.out.println("A vaca " + nome + " não produziu leite hoje.");
 			return 0;
 		}
 	}
@@ -76,6 +74,4 @@ public class Animal {
 	public void setProduzLeite(boolean produzLeite) {
 		this.produzLeite = produzLeite;
 	}	
-	
-	
 }
