@@ -36,5 +36,7 @@ public class Main {
 		fazenda.producaoTotalFazenda(animalList);
 
 		tanque.armazenarLeite(fazenda);
+		
+		tanque.removerleite(10, tanque);
 	}
 }

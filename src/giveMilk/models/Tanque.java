@@ -28,6 +28,15 @@ public class Tanque {
 			return 0;
 		}
 	}
+	public double removerleite(double quantidade, Tanque tanque) {
+		if(tanque.leiteArmazenado < quantidade) {
+			System.out.println("A quantidade de retirada é superior ao existente no tanque.");
+			return 0;
+		}else {
+			System.out.println("Foi retirado "+ quantidade + "L do tanque " + tanque.ID);
+			return tanque.leiteArmazenado =- quantidade;
+		}
+	}
 	
 	public int getID() {
 		return ID;
